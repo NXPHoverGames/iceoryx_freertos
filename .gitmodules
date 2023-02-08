@@ -1,0 +1,9 @@
+[submodule "submodules/FreeRTOS_cpp11"]
+	path = submodules/FreeRTOS_cpp11
+	url = git@github.com:grygorek/FreeRTOS_cpp11.git
+[submodule "submodules/iceoryx"]
+	path = submodules/iceoryx
+	url = git@github.com:JakubSosnovec/iceoryx.git
+[submodule "submodules/Lab-Project-FreeRTOS-POSIX"]
+	path = submodules/Lab-Project-FreeRTOS-POSIX
+	url = git@github.com:FreeRTOS/Lab-Project-FreeRTOS-POSIX.git

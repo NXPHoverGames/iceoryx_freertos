@@ -116,8 +116,8 @@ https://wiki.segger.com/Thread-Local_Storage.
 
 However it always uses the same address of thread-local storage. So, we can
 successfully compile and execute but it doesnt function correctly, it behaves
-rather like normal static storage. I think this could be implemented properly
-by using the FreeRTOS-native thread-local storage
+rather like normal global static storage. I think this could be implemented
+properly by using the FreeRTOS-native thread-local storage
 (https://www.freertos.org/thread-local-storage-pointers.html) inside the
 `__aeabi_read_tp` implementation. It would be a very interesting feature and
 could be merged into https://github.com/grygorek/FreeRTOS_cpp11.
@@ -136,4 +136,4 @@ file, because it knows the final memory layout, no idea why...
 
 # License
 
-Please refer to (LICENSE)[./LICENSE] file for details on the licenses.
+Please refer to [LICENSE](./LICENSE) file for details on the licenses.

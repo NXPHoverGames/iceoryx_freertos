@@ -25,7 +25,7 @@
 #include "FreeRTOSConfig.h"
 #include "task.h"
 
-#include "iceoryx_hoofs/log/logger.hpp"
+#include "iox/logging.hpp"
 #include "iceoryx_posh/iceoryx_posh_config.hpp"
 #include "iceoryx_posh/iceoryx_posh_types.hpp"
 #include "iceoryx_posh/internal/roudi/roudi.hpp"

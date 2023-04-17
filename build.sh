@@ -12,6 +12,7 @@ rm -rf *
 
 cmake \
     -DCMAKE_BUILD_TYPE=MinSizeRel \
+    -DCMAKE_INSTALL_PREFIX=/${DIR}/install_dir \
     -DCMAKE_TOOLCHAIN_FILE=${DIR}/compiler.cmake ..
 cmake --build . -- -j4
 cmake --install . --prefix ${DIR}/install_dir

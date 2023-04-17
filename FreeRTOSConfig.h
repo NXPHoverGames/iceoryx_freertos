@@ -70,8 +70,8 @@
 #define configUSE_IDLE_HOOK						0
 #define configUSE_TICK_HOOK						0
 #define configMAX_PRIORITIES					( 7 )
-#define configMINIMAL_STACK_SIZE				( 16383 ) /* Almost 64 kB as the max unsigned short */
-#define configTOTAL_HEAP_SIZE					( 100000000 ) /* 100 MB */
+#define configMINIMAL_STACK_SIZE				( 1024 )
+#define configTOTAL_HEAP_SIZE					( 800000 ) /* ~800 kB */
 #define configMAX_TASK_NAME_LEN					( 10 )
 #define configUSE_TRACE_FACILITY				0
 #define configUSE_16_BIT_TICKS					0
@@ -90,7 +90,7 @@
 #define configUSE_POSIX_ERRNO 1
 #define configSTACK_DEPTH_TYPE uint32_t
 
-#define configDEFAULT_STD_THREAD_STACK_SIZE 2097152 /* 8 MB, to match default linux stack size */
+#define configDEFAULT_STD_THREAD_STACK_SIZE 16384 /* 64 kB */
 #define configMAIN_STACK_SIZE configDEFAULT_STD_THREAD_STACK_SIZE
 
 /* Co-routine definitions. */

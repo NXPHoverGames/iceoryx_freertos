@@ -2,7 +2,7 @@
 # Copyright 2023 NXP
 
 cmake_minimum_required(VERSION 3.0)
-set(project iox_freertos)
+set(project freertos_sdk)
 project(${project} LANGUAGES C CXX ASM)
 set(version 1.0.0)
 
@@ -41,7 +41,7 @@ add_library(FreeRTOS_cpp11 STATIC
   ${FREERTOS_STDCPP_DIR}/mutex.cc
   ${FREERTOS_STDCPP_DIR}/condition_variable.cc
 )
-add_library(FreeRTOS_cpp11::FreeRTOS_cpp11 ALIAS FreeRTOS_cpp11)
+add_library(${project}::FreeRTOS_cpp11 ALIAS FreeRTOS_cpp11)
 
 target_include_directories(FreeRTOS_cpp11 PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${FREERTOS_KERNEL_DIR}/cpp11_gcc>
@@ -58,10 +58,10 @@ install(FILES ${FREERTOS_KERNEL_HEADERS_PORTABLE} DESTINATION include)
 file(GLOB FREERTOS_KERNEL_CPP11_HEADERS ${FREERTOS_KERNEL_DIR}/cpp11_gcc/*.h)
 install(FILES ${FREERTOS_KERNEL_CPP11_HEADERS} DESTINATION include)
 install(DIRECTORY ${FREERTOS_KERNEL_DIR}/cpp11_gcc/bits DESTINATION include)
+
 install(FILES FreeRTOSConfig.h DESTINATION include)
 install(TARGETS FreeRTOS_cpp11 EXPORT FreeRTOS_cpp11 DESTINATION lib)
-install(EXPORT FreeRTOS_cpp11 DESTINATION lib NAMESPACE FreeRTOS_cpp11::)
-install(FILES freertos_cpp11-config.cmake DESTINATION lib)
+install(EXPORT FreeRTOS_cpp11 DESTINATION lib NAMESPACE ${project}::)
 
 add_library(FreeRTOS_POSIX STATIC
   ${FREERTOS_POSIX_DIR}/FreeRTOS-Plus-POSIX/source/FreeRTOS_POSIX_clock.c
@@ -76,7 +76,7 @@ add_library(FreeRTOS_POSIX STATIC
   ${FREERTOS_POSIX_DIR}/FreeRTOS-Plus-POSIX/source/FreeRTOS_POSIX_semaphore.c
   ${FREERTOS_POSIX_DIR}/FreeRTOS-Plus-POSIX/source/FreeRTOS_POSIX_unistd.c
 )
-add_library(FreeRTOS_POSIX::FreeRTOS_POSIX ALIAS FreeRTOS_POSIX)
+add_library(${project}::FreeRTOS_POSIX ALIAS FreeRTOS_POSIX)
 
 target_compile_definitions(FreeRTOS_POSIX
   PUBLIC
@@ -108,7 +108,7 @@ target_include_directories(FreeRTOS_POSIX PUBLIC
     $<INSTALL_INTERFACE:include>
 )
 
-target_link_libraries(FreeRTOS_POSIX PUBLIC FreeRTOS_cpp11::FreeRTOS_cpp11)
+target_link_libraries(FreeRTOS_POSIX PUBLIC freertos_sdk::FreeRTOS_cpp11)
 
 install(DIRECTORY ${FREERTOS_POSIX_DIR}/include/FreeRTOS_POSIX DESTINATION include)
 install(FILES ${FREERTOS_POSIX_DIR}/include/private/iot_doubly_linked_list.h DESTINATION include)
@@ -120,5 +120,6 @@ file(GLOB FREERTOS_POSIX_HEADERS_BASIC_PORTABLE_WIN ${FREERTOS_POSIX_DIR}/FreeRT
 install(FILES ${FREERTOS_POSIX_HEADERS_BASIC_PORTABLE_WIN} DESTINATION include)
 
 install(TARGETS FreeRTOS_POSIX EXPORT FreeRTOS_POSIX DESTINATION lib)
-install(EXPORT FreeRTOS_POSIX DESTINATION lib NAMESPACE FreeRTOS_POSIX::)
-install(FILES freertos_posix-config.cmake DESTINATION lib)
+install(EXPORT FreeRTOS_POSIX DESTINATION lib NAMESPACE ${project}::)
+
+install(FILES ${project}-config.cmake DESTINATION lib)

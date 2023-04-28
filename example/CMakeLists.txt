@@ -26,16 +26,15 @@ add_executable(iox_freertos_example
 )
 
 find_package(iceoryx_posh REQUIRED)
-find_package(FreeRTOS_cpp11 REQUIRED)
-find_package(FreeRTOS_POSIX REQUIRED)
+find_package(freertos_sdk REQUIRED COMPONENTS FreeRTOS_cpp11 FreeRTOS_POSIX)
 find_package(Threads REQUIRED) # Needed by iceoryx_posh
 
 target_link_libraries(iox_freertos_example
     PRIVATE
     iceoryx_posh::iceoryx_posh
     iceoryx_posh::iceoryx_posh_roudi
-    FreeRTOS_cpp11::FreeRTOS_cpp11
-    FreeRTOS_POSIX::FreeRTOS_POSIX
+    freertos_sdk::FreeRTOS_cpp11
+    freertos_sdk::FreeRTOS_POSIX
 )
 
 target_include_directories(iox_freertos_example

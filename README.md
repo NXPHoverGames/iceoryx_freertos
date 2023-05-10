@@ -38,7 +38,7 @@ infinite loop (the usual embedded assert failure handler procedure).
 
 # Build and execute in docker
 
-We supply a (Dockerfile)[Dockerfile] to provide a reliable build environment.
+We supply a [Dockerfile](./Dockerfile) to provide a reliable build environment.
 To build the docker image, run the following:
 ```
 docker build . -t iox_freertos:0.1
